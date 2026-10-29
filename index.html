@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maitrik Bhadresa | Highway &amp; Transportation Engineer</title>
+  <meta name="description" content="Maitrik Bhadresa is a highway and transportation engineer working on road safety audits, highway geometric design, junction improvement and traffic engineering.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       Palette
+       asphalt  #1C2629  deep road surface (hero, contact)
+       asphalt2 #253236  raised surfaces on dark
+       paper    #F1F2EE  cool survey-paper background
+       line     #D6D9D2  hairlines on paper
+       ink      #1E2427  body text
+       steel    #5C676A  secondary text
+       brass    #B08A45  accent: aged road-marking paint
+       chalk    #E7E9E3  text on dark
+       ============================================================ */
+    :root {
+      --asphalt: #1C2629;
+      --asphalt-2: #253236;
+      --asphalt-line: #34444A;
+      --paper: #F1F2EE;
+      --paper-2: #E8EAE4;
+      --line: #D6D9D2;
+      --ink: #1E2427;
+      --steel: #5C676A;
+      --brass: #B08A45;
+      --brass-dark: #8C6C32;
+      --chalk: #E7E9E3;
+      --chalk-dim: #9AA6A8;
+      --font: "Overpass", "Segoe UI", system-ui, sans-serif;
+      --wrap: 1160px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+      font-feature-settings: "tnum" 0;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    h1, h2, h3, p { margin: 0; }
+    ul, ol { margin: 0; padding: 0; }
+    .num { font-variant-numeric: tabular-nums; }
+
+    :focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; border-radius: 2px; }
+
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 28px; }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      font: 600 15px/1 var(--font);
+      letter-spacing: .01em;
+      padding: 15px 24px 13px;
+      border-radius: 3px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: background-color .2s, color .2s, border-color .2s;
+    }
+    .btn-brass { background: var(--brass); color: #fff; }
+    .btn-brass:hover { background: var(--brass-dark); }
+    .btn-ghost { color: var(--chalk); border-color: var(--asphalt-line); }
+    .btn-ghost:hover { border-color: var(--chalk-dim); }
+
+    /* ---------- Navbar ---------- */
+    .nav {
+      position: fixed; inset: 0 0 auto 0; z-index: 50;
+      transition: background-color .3s, border-color .3s;
+      border-bottom: 1px solid transparent;
+    }
+    .nav.solid { background: rgba(28, 38, 41, .96); border-color: var(--asphalt-line); backdrop-filter: blur(8px); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--chalk); font-weight: 600; font-size: 16px; letter-spacing: .01em; }
+    .brand-mark {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 1.5px solid var(--brass);
+      display: grid; place-items: center;
+      font-size: 13px; font-weight: 700; color: var(--brass); letter-spacing: .04em;
+    }
+    .menu { display: flex; align-items: center; gap: 30px; list-style: none; }
+    .menu a { text-decoration: none; color: var(--chalk-dim); font-size: 15px; font-weight: 500; padding: 6px 0; border-bottom: 1.5px solid transparent; transition: color .2s, border-color .2s; }
+    .menu a:hover, .menu a.active { color: var(--chalk); border-color: var(--brass); }
+    .menu .menu-cta { color: var(--chalk); border: 1px solid var(--asphalt-line); padding: 9px 16px 7px; border-radius: 3px; }
+    .menu .menu-cta:hover { border-color: var(--brass); }
+    .burger { display: none; background: none; border: 0; padding: 10px; cursor: pointer; }
+    .burger span { display: block; width: 22px; height: 1.5px; background: var(--chalk); margin: 5px 0; transition: transform .25s, opacity .25s; }
+    .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ---------- Hero ---------- */
+    .hero { background: var(--asphalt); color: var(--chalk); position: relative; overflow: hidden; padding-top: 72px; }
+    .hero-grid { display: grid; grid-template-columns: 1.45fr 1fr; gap: 64px; align-items: end; padding: 84px 0 40px; }
+    .hero-role { color: var(--chalk-dim); font-size: 16px; margin-bottom: 22px; }
+    .hero-role b { color: var(--brass); font-weight: 600; }
+    .hero h1 {
+      font-weight: 300;
+      font-size: clamp(3rem, 7.2vw, 6.2rem);
+      line-height: .95;
+      letter-spacing: -0.035em;
+      color: #fff;
+      margin-bottom: 30px;
+    }
+    .hero h1 span { display: block; font-weight: 600; letter-spacing: -0.03em; }
+    .hero-lead { font-size: 19px; line-height: 1.55; color: var(--chalk); max-width: 30em; margin-bottom: 36px; font-weight: 300; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 36px; }
+    .hero-award { display: flex; align-items: center; gap: 14px; font-size: 15px; color: var(--chalk-dim); }
+    .hero-award strong { color: var(--chalk); font-weight: 600; }
+    .reflector { width: 12px; height: 26px; border-radius: 6px; background: linear-gradient(180deg, #D7B36A, var(--brass)); flex-shrink: 0; box-shadow: 0 0 18px rgba(176, 138, 69, .45); }
+
+    .portrait { position: relative; justify-self: end; width: min(340px, 100%); }
+    .portrait::before {
+      content: ""; position: absolute; inset: 18px -18px -18px 18px;
+      border: 1px solid var(--brass); border-radius: 2px;
+    }
+    .portrait img { position: relative; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 2px; filter: saturate(.92) contrast(1.03); }
+    .portrait figcaption { position: relative; margin-top: 30px; font-size: 14px; color: var(--chalk-dim); }
+
+    /* Road alignment drawing */
+    .road { display: block; width: 100%; height: 190px; margin-top: 10px; }
+    .road .edge { stroke: #55666B; }
+    .road .surface { stroke: var(--asphalt-2); }
+    .road .centre { stroke: var(--brass); stroke-dasharray: 22 16; }
+    .road-mask path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 2.4s cubic-bezier(.6, .05, .25, 1) .2s forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+
+    .markers { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--asphalt-line); }
+    .marker { padding: 26px 24px 34px 0; position: relative; }
+    .marker + .marker { padding-left: 24px; border-left: 1px solid var(--asphalt-line); }
+    .marker strong { display: block; font-size: 34px; font-weight: 600; color: #fff; letter-spacing: -0.02em; line-height: 1.1; font-variant-numeric: tabular-nums; }
+    .marker strong small { font-size: 18px; font-weight: 400; color: var(--chalk-dim); margin-left: 4px; }
+    .marker span { display: block; margin-top: 6px; font-size: 14.5px; color: var(--chalk-dim); line-height: 1.45; max-width: 18em; }
+
+    /* ---------- Content blocks ---------- */
+    .block { padding: 110px 0; border-top: 1px solid var(--line); }
+    .block.tint { background: var(--paper-2); }
+    .block-grid { display: grid; grid-template-columns: 260px 1fr; gap: 56px; }
+    .block-head { position: sticky; top: 110px; align-self: start; }
+    .block-head h2 { font-size: 30px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
+    .block-head p { margin-top: 12px; color: var(--steel); font-size: 15.5px; line-height: 1.55; }
+    .rule { width: 36px; height: 3px; background: var(--brass); margin-bottom: 22px; }
+
+    /* About */
+    .about-lead { font-size: 26px; line-height: 1.45; font-weight: 300; letter-spacing: -0.01em; max-width: 34em; margin-bottom: 30px; }
+    .about-body { columns: 2; column-gap: 44px; color: var(--steel); }
+    .about-body p + p { margin-top: 1em; }
+    .facts { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--line); font-size: 15px; }
+    .facts dt { color: var(--steel); margin-bottom: 2px; }
+    .facts dd { margin: 0; font-weight: 600; }
+
+    /* Expertise list */
+    .expertise { list-style: none; border-top: 1px solid var(--ink); }
+    .expertise li { display: grid; grid-template-columns: 1fr 1.5fr; gap: 32px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+    .expertise h3 { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
+    .expertise p { color: var(--steel); }
+
+    /* Experience timeline */
+    .timeline { list-style: none; position: relative; }
+    .timeline::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 0; border-left: 2px dashed var(--line); }
+    .job { position: relative; padding-left: 44px; }
+    .job + .job { margin-top: 52px; }
+    .job::before { content: ""; position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: var(--paper); border: 2px solid var(--brass); }
+    .job.current::before { background: var(--brass); }
+    .job-when { font-size: 14.5px; color: var(--brass-dark); font-weight: 600; margin-bottom: 6px; }
+    .job h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+    .job-org { color: var(--steel); margin-top: 4px; max-width: 40em; }
+    .job ul { list-style: none; margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .job ul li { font-size: 14px; padding: 6px 12px 4px; border: 1px solid var(--line); border-radius: 2px; background: #fff; }
+    .job .plain { display: block; margin-top: 14px; }
+    .job .plain li { border: 0; background: none; padding: 0 0 0 18px; position: relative; font-size: 16px; color: var(--steel); }
+    .job .plain li + li { margin-top: 6px; }
+    .job .plain li::before { content: ""; position: absolute; left: 0; top: 11px; width: 8px; height: 1.5px; background: var(--brass); }
+
+    /* Education + skills */
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+    .split h3.sub { font-size: 15px; color: var(--steel); font-weight: 500; margin-bottom: 18px; }
+    .degree { padding: 22px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 64px 1fr; gap: 16px; }
+    .degree:last-child { border-bottom: 1px solid var(--line); }
+    .degree .yr { font-weight: 600; color: var(--brass-dark); font-variant-numeric: tabular-nums; }
+    .degree h4 { margin: 0; font-size: 19px; font-weight: 600; }
+    .degree p { color: var(--steel); font-size: 15.5px; }
+
+    .skill { padding: 18px 0; border-top: 1px solid var(--line); }
+    .skill:last-of-type { border-bottom: 1px solid var(--line); }
+    .skill-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+    .skill-row b { font-weight: 600; font-size: 17px; }
+    .skill-row span { font-size: 14px; color: var(--steel); }
+    .lane { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+    .lane i { height: 5px; background: var(--line); border-radius: 1px; }
+    .lane i.on { background: var(--brass); }
+    .methods { margin-top: 28px; font-size: 15.5px; color: var(--steel); }
+    .methods b { color: var(--ink); font-weight: 600; }
+
+    /* Research */
+    .research-title { font-size: clamp(1.6rem, 2.8vw, 2.25rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.25; max-width: 24em; margin-bottom: 26px; }
+    .research-scope { color: var(--steel); max-width: 42em; margin-bottom: 44px; }
+    .steps { list-style: none; counter-reset: step; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border-top: 1px solid var(--ink); }
+    .steps li { counter-increment: step; padding: 22px 20px 0 0; }
+    .steps li + li { padding-left: 20px; border-left: 1px solid var(--line); }
+    .steps li::before { content: counter(step); display: block; font-size: 13px; font-weight: 700; color: var(--brass-dark); margin-bottom: 10px; font-variant-numeric: tabular-nums; }
+    .steps h4 { margin: 0 0 6px; font-size: 16.5px; font-weight: 600; line-height: 1.3; }
+    .steps p { font-size: 14.5px; color: var(--steel); line-height: 1.5; }
+
+    /* Publication */
+    .paper { background: #fff; border: 1px solid var(--line); border-left: 3px solid var(--brass); padding: 32px 34px 30px; border-radius: 2px; }
+    .paper h3 { font-size: 23px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; margin-bottom: 10px; }
+    .paper .authors { margin-bottom: 4px; }
+    .paper .venue { color: var(--steel); font-style: italic; }
+    .paper .prize { display: inline-flex; align-items: center; gap: 10px; margin-top: 20px; font-weight: 600; font-size: 15px; color: var(--brass-dark); }
+    .paper .prize .reflector { width: 8px; height: 18px; box-shadow: none; }
+
+    /* Projects */
+    .filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
+    .filters button {
+      font: 500 14.5px/1 var(--font);
+      padding: 10px 16px 8px;
+      background: transparent; color: var(--steel);
+      border: 1px solid var(--line); border-radius: 2px; cursor: pointer;
+      transition: background-color .2s, color .2s, border-color .2s;
+    }
+    .filters button:hover { color: var(--ink); border-color: var(--steel); }
+    .filters button[aria-pressed="true"] { background: var(--asphalt); border-color: var(--asphalt); color: var(--chalk); }
+
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .project { padding: 30px 30px 32px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #fff; }
+    .project[hidden] { display: none; }
+    .project .kind { font-size: 13.5px; color: var(--brass-dark); font-weight: 600; margin-bottom: 10px; }
+    .project h3 { font-size: 19.5px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; margin-bottom: 10px; }
+    .project p { color: var(--steel); font-size: 15.5px; }
+    .lengths { list-style: none; margin-top: 4px; }
+    .lengths li { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0 7px; border-bottom: 1px dashed var(--line); font-size: 15px; color: var(--steel); }
+    .lengths li:last-child { border-bottom: 0; }
+    .lengths b { color: var(--ink); font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+    .project.wide { grid-column: 1 / -1; }
+    .lengths em { font-style: normal; font-size: 12.5px; font-weight: 600; color: var(--brass-dark); margin-left: 8px; padding: 2px 7px 1px; border: 1px solid #DCCBA6; border-radius: 2px; white-space: nowrap; }
+    .papers { display: grid; gap: 20px; }
+    .paper-when { font-size: 14px; font-weight: 600; color: var(--brass-dark); margin-bottom: 8px; }
+
+    /* ---------- Contact ---------- */
+    .contact { background: var(--asphalt); color: var(--chalk); padding: 120px 0 0; }
+    .contact h2 { font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 300; letter-spacing: -0.03em; line-height: 1.05; color: #fff; max-width: 13em; margin-bottom: 26px; }
+    .contact p { color: var(--chalk-dim); max-width: 34em; font-size: 18px; margin-bottom: 40px; }
+    .contact-rows { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--asphalt-line); }
+    .contact-rows > * { padding: 28px 24px 30px 0; text-decoration: none; }
+    .contact-rows > * + * { padding-left: 24px; border-left: 1px solid var(--asphalt-line); }
+    .contact-rows small { display: block; font-size: 14px; color: var(--chalk-dim); margin-bottom: 6px; }
+    .contact-rows span { font-size: 18px; color: #fff; font-weight: 500; word-break: break-word; }
+    .contact-rows a span { border-bottom: 1px solid var(--brass); transition: color .2s; }
+    .contact-rows a:hover span { color: var(--brass); }
+
+    .footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 26px 0 30px; margin-top: 60px; border-top: 1px solid var(--asphalt-line); font-size: 14px; color: var(--chalk-dim); }
+    .footer a { text-decoration: none; }
+    .footer a:hover { color: var(--chalk); }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1000px) {
+      .block-grid { grid-template-columns: 1fr; gap: 36px; }
+      .block-head { position: static; }
+      .steps { grid-template-columns: 1fr 1fr; row-gap: 26px; }
+      .steps li, .steps li + li { padding: 20px 20px 0 0; border-left: 0; }
+    }
+    @media (max-width: 860px) {
+      .burger { display: block; }
+      .menu {
+        position: absolute; top: 72px; left: 0; right: 0;
+        flex-direction: column; align-items: stretch; gap: 0;
+        background: var(--asphalt); border-bottom: 1px solid var(--asphalt-line);
+        padding: 8px 28px 22px; display: none;
+      }
+      .menu.open { display: flex; }
+      .nav:has(.menu.open) { background: var(--asphalt); }
+      .menu a { display: block; padding: 14px 0; border-bottom: 1px solid var(--asphalt-line); }
+      .menu .menu-cta { margin-top: 16px; text-align: center; }
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; padding-top: 48px; }
+      .portrait { justify-self: start; width: 240px; order: -1; }
+      .road { height: 120px; }
+      .markers { grid-template-columns: 1fr 1fr; }
+      .marker:nth-child(3) { padding-left: 0; border-left: 0; }
+      .marker:nth-child(n+3) { border-top: 1px solid var(--asphalt-line); }
+      .about-body { columns: 1; }
+      .about-lead { font-size: 22px; }
+      .expertise li { grid-template-columns: 1fr; gap: 6px; }
+      .split { grid-template-columns: 1fr; }
+      .projects { grid-template-columns: 1fr; }
+      .contact-rows { grid-template-columns: 1fr; }
+      .contact-rows > * + * { padding-left: 0; border-left: 0; border-top: 1px solid var(--asphalt-line); }
+      .block { padding: 76px 0; }
+    }
+    @media (max-width: 520px) {
+      body { font-size: 16px; }
+      .wrap { padding: 0 20px; }
+      .steps { grid-template-columns: 1fr; }
+      .marker strong { font-size: 28px; }
+      .paper { padding: 24px 22px; }
+      .project { padding: 24px 22px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .road-mask path { animation: none; stroke-dashoffset: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a href="#top" class="brand"><span class="brand-mark">MB</span>Maitrik Bhadresa</a>
+      <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+      <ul class="menu" id="menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact" class="menu-cta">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ===================== Hero ===================== -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <p class="hero-role"><b>Senior Project Engineer</b> at SVNIT, Surat</p>
+            <h1>Maitrik<span>Bhadresa</span></h1>
+            <p class="hero-lead">I audit roads, redesign junctions and model crash risk on Indian highways, so that safety research ends up built into the road.</p>
+            <div class="hero-actions">
+              <a href="#projects" class="btn btn-brass">See my projects</a>
+              <a href="#contact" class="btn btn-ghost">Get in touch</a>
+            </div>
+            <p class="hero-award"><span class="reflector" aria-hidden="true"></span><span><strong>Best Paper Award</strong>, TIPCE 2025 at IIT Roorkee, and a paper at TRB 2026, Washington, D.C.</span></p>
+          </div>
+          <figure class="portrait" style="margin:0">
+            <img src="data:image/jpeg;base64,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" alt="Portrait of Maitrik Bhadresa">
+          </figure>
+        </div>
+      </div>
+
+      <svg class="road" viewBox="0 0 1440 190" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <mask id="roadMask" class="road-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1440" height="190">
+            <path d="M-40 160 C 260 160, 420 70, 720 72 S 1180 150, 1480 40" pathLength="1" fill="none" stroke="#fff" stroke-width="90"/>
+          </mask>
+        </defs>
+        <g mask="url(#roadMask)" fill="none">
+          <path class="edge" d="M-40 160 C 260 160, 420 70, 720 72 S 1180 150, 1480 40" stroke-width="58"/>
+          <path class="surface" d="M-40 160 C 260 160, 420 70, 720 72 S 1180 150, 1480 40" stroke-width="54"/>
+          <path class="centre" d="M-40 160 C 260 160, 420 70, 720 72 S 1180 150, 1480 40" stroke-width="2.5"/>
+        </g>
+      </svg>
+
+      <div class="wrap">
+        <div class="markers">
+          <div class="marker"><strong>410<small>km</small></strong><span>of national highways and city roads safety-audited</span></div>
+          <div class="marker"><strong>45</strong><span>junctions redesigned across Ahmedabad</span></div>
+          <div class="marker"><strong>77.95<small>km</small></strong><span>across 7 corridor design and estimation projects</span></div>
+          <div class="marker"><strong>2</strong><span>conference papers, at TIPCE 2025 and TRB 2026</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== About ===================== -->
+    <section class="block" id="about">
+      <div class="wrap block-grid">
+        <header class="block-head"><div class="rule"></div><h2>About</h2></header>
+        <div>
+          <p class="about-lead">I'm a civil engineer specialising in highway and transportation engineering, working where field data, design standards and road safety meet.</p>
+          <div class="about-body">
+            <p>I work as a Senior Project Engineer with the Research and Consultancy Cell of the Transportation Planning and Engineering Section at SVNIT, Surat, where I lead and coordinate transportation planning, traffic engineering and road safety consultancy projects, from field investigations to final reports and DPRs.</p>
+            <p>My research looks at how highway geometry and vehicle behaviour shape operating speeds and crash risk. I want to produce research that engineers can actually apply in the field, and to work with teams bringing better design methods and technology into practice.</p>
+          </div>
+          <dl class="facts">
+            <div><dt>Based in</dt><dd>Surat, Gujarat</dd></div>
+            <div><dt>Languages</dt><dd>English, Hindi, Gujarati</dd></div>
+            <div><dt>Open to</dt><dd>Research, consultancy and PhD roles</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Expertise ===================== -->
+    <section class="block tint" id="expertise">
+      <div class="wrap block-grid">
+        <header class="block-head"><div class="rule"></div><h2>Expertise</h2><p>What I take responsibility for on projects.</p></header>
+        <ul class="expertise">
+          <li><h3>Road safety audit</h3><p>Operation and maintenance stage audits of rural and urban roads, identifying hazards and proposing countermeasures.</p></li>
+          <li><h3>Geometric design and consistency</h3><p>Highway alignment and cross-section design in Civil 3D and OpenRoads, and design consistency assessment of existing highways.</p></li>
+          <li><h3>Corridor planning</h3><p>Corridor planning and transportation studies for urban roads, iconic corridors and port access.</p></li>
+          <li><h3>Junction design and traffic management</h3><p>Survey-based redesign of junctions and intersections, and traffic management plans around stations and interchanges.</p></li>
+          <li><h3>Traffic and crash analysis</h3><p>Traffic surveys, traffic analysis, crash data analysis and blackspot identification.</p></li>
+          <li><h3>Reports, estimates and DPRs</h3><p>Technical reports, cost estimates, detailed project reports and other consultancy deliverables.</p></li>
+          <li><h3>Project coordination</h3><p>Planning field investigations and coordinating project activities with clients and stakeholders.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== Experience ===================== -->
+    <section class="block" id="experience">
+      <div class="wrap block-grid">
+        <header class="block-head"><div class="rule"></div><h2>Experience</h2></header>
+        <ol class="timeline">
+          <li class="job current">
+            <p class="job-when num">December 2025 to present</p>
+            <h3>Senior Project Engineer</h3>
+            <p class="job-org">Research and Consultancy Cell, Transportation Planning and Engineering Section, Department of Civil Engineering, SVNIT, Surat</p>
+            <ul class="plain">
+              <li>Lead and coordinate transportation planning, traffic engineering and road safety consultancy projects</li>
+              <li>Manage project activities, technical deliverables, field investigations and client coordination</li>
+            </ul>
+          </li>
+          <li class="job">
+            <p class="job-when num">October 2024 to December 2025</p>
+            <h3>Project Engineer</h3>
+            <p class="job-org">Research and Consultancy Cell, Transportation Planning and Engineering Section, SVNIT, Surat</p>
+            <ul class="plain">
+              <li>Delivered traffic engineering, transportation planning and road safety consultancy assignments</li>
+              <li>Conducted traffic surveys, data analysis and feasibility studies, and prepared technical reports</li>
+            </ul>
+          </li>
+          <li class="job">
+            <p class="job-when num">June to August 2023</p>
+            <h3>Intern</h3>
+            <p class="job-org">Research and Consultancy Cell, Transportation Planning and Engineering Section, SVNIT, Surat</p>
+          </li>
+          <li class="job">
+            <p class="job-when num">August 2021 to September 2022</p>
+            <h3>Site Engineer</h3>
+            <p class="job-org">Khambhayata Shilp Associates, Rajkot</p>
+            <ul class="plain">
+              <li>Supervised site work and coordinated with contractors</li>
+              <li>Managed road construction, landscaping works and project schedules</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== Education & Skills ===================== -->
+    <section class="block tint" id="education">
+      <div class="wrap block-grid">
+        <header class="block-head"><div class="rule"></div><h2>Education and skills</h2></header>
+        <div class="split">
+          <div>
+            <h3 class="sub">Degrees</h3>
+            <div class="degree"><span class="yr">2024</span><div><h4>Master of Engineering</h4><p>Highway and Transportation Engineering<br>The Maharaja Sayajirao University of Baroda, Vadodara</p></div></div>
+            <div class="degree"><span class="yr">2021</span><div><h4>Bachelor of Engineering</h4><p>Civil Engineering<br>Gujarat Technological University, Rajkot</p></div></div>
+          </div>
+          <div>
+            <h3 class="sub">Software</h3>
+            <div class="skill">
+              <div class="skill-row"><b>ArcGIS Pro</b><span>Advanced</span></div>
+              <div class="lane" role="img" aria-label="4 out of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+            </div>
+            <div class="skill">
+              <div class="skill-row"><b>Autodesk Civil 3D</b><span>Advanced</span></div>
+              <div class="lane" role="img" aria-label="4 out of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+            </div>
+            <div class="skill">
+              <div class="skill-row"><b>OpenRoads Designer</b><span>Intermediate</span></div>
+              <div class="lane" role="img" aria-label="3 out of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+            </div>
+            <div class="skill">
+              <div class="skill-row"><b>Stata</b><span>Advanced</span></div>
+              <div class="lane" role="img" aria-label="4 out of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+            </div>
+            <p class="methods"><b>Methods:</b> regression modelling, reliability analysis (FORM), crash prediction models, radar speed surveys, GIS analysis.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Research ===================== -->
+    <section class="block" id="research">
+      <div class="wrap block-grid">
+        <header class="block-head"><div class="rule"></div><h2>Research</h2><p>Current area of research</p></header>
+        <div>
+          <h3 class="research-title">Reliability-based road safety evaluation: a study of multi-lane highways in plain terrain</h3>
+          <p class="research-scope">A framework that combines field data, statistical modelling and reliability analysis to measure how geometric design and vehicle characteristics affect operating speeds and crash severity. The resulting alignment-based safety indicators support evidence-based improvements on multi-lane national highways.</p>
+          <ol class="steps">
+            <li><h4>Data collection</h4><p>Radar gun speed surveys, plus geometric and crash records.</p></li>
+            <li><h4>Speed prediction</h4><p>Linear regression models for operating speed.</p></li>
+            <li><h4>Design consistency</h4><p>First-Order Reliability Method (FORM) to quantify safety reliability.</p></li>
+            <li><h4>Crash modelling</h4><p>Zero/one-inflated beta regression and a Poisson-Tweedie frequency model.</p></li>
+            <li><h4>Alignment indices</h4><p>CCR and CRR to link geometric variability with crashes.</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Publications ===================== -->
+    <section class="block tint" id="publications">
+      <div class="wrap block-grid">
+        <header class="block-head"><div class="rule"></div><h2>Publications</h2></header>
+        <div class="papers">
+          <article class="paper">
+            <p class="paper-when">January 2026</p>
+            <h3>Performance-Based Framework for Evaluating Highway Geometry Influence on Crash at National Highways</h3>
+            <p class="authors"><b>Maitrik Bhadresa</b>, Jaydip Goyani, Shriniwas Arkatkar</p>
+            <p class="venue">105th Annual Meeting of the Transportation Research Board (TRB 2026), Washington, D.C., 11–15 January 2026</p>
+          </article>
+          <article class="paper">
+            <p class="paper-when">September 2025</p>
+            <h3>Road Safety Evaluation of Indian Multi-lane Highways in Plain Terrain</h3>
+            <p class="authors"><b>Maitrik Bhadresa</b>, Jaydip Goyani, Shriniwas Arkatkar</p>
+            <p class="venue">3rd International Conference on Transportation Infrastructure Projects: Conception to Execution (TIPCE 2025), IIT Roorkee, 18–21 September 2025</p>
+            <p class="prize"><span class="reflector" aria-hidden="true"></span>Winner of the Best Paper Award</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Projects ===================== -->
+    <section class="block" id="projects">
+      <div class="wrap block-grid">
+        <header class="block-head"><div class="rule"></div><h2>Projects</h2><p>Research and consultancy work across Gujarat.</p></header>
+        <div>
+          <div class="filters" role="group" aria-label="Filter projects">
+            <button type="button" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" data-filter="safety" aria-pressed="false">Road safety</button>
+            <button type="button" data-filter="junction" aria-pressed="false">Junctions</button>
+            <button type="button" data-filter="corridor" aria-pressed="false">Corridors</button>
+            <button type="button" data-filter="planning" aria-pressed="false">Traffic planning</button>
+            <button type="button" data-filter="site" aria-pressed="false">Site work</button>
+          </div>
+          <div class="projects">
+            <article class="project wide" data-category="corridor">
+              <p class="kind">Corridors</p>
+              <h3>Corridor design, planning and estimation</h3>
+              <ul class="lengths">
+                <li><span>SG Highway, Ujala Circle to J-7 Circle, Ahmedabad <em>ongoing</em></span><b>48 km</b></li>
+                <li><span>150 ft Ring Road iconic corridor, Rajkot <em>ongoing</em></span><b>10.50 km</b></li>
+                <li><span>Ashram Road development, Ahmedabad</span><b>7 km</b></li>
+                <li><span>Jaspur–Kalol DP Road, AUDA, Ahmedabad</span><b>6.85 km</b></li>
+                <li><span>Sanand–Nalsarovar iconic road, SH-135, Gujarat Urban Development Company</span><b>2.2 km</b></li>
+                <li><span>Jahangirpura to Variyav checkpost, Surat</span><b>2 km</b></li>
+                <li><span>Palanpur–Deesa iconic road</span><b>1.4 km</b></li>
+              </ul>
+            </article>
+            <article class="project" data-category="safety">
+              <p class="kind">Road safety</p>
+              <h3>Safety audit of rural and urban roads</h3>
+              <ul class="lengths">
+                <li><span>National Highway 48</span><b>181 km</b></li>
+                <li><span>National Highway 53</span><b>132 km</b></li>
+                <li><span>Outer Ring Road (URDCL), Surat</span><b>51 km</b></li>
+                <li><span>Surat Municipal Corporation roads</span><b>46 km</b></li>
+              </ul>
+            </article>
+            <article class="project" data-category="safety">
+              <p class="kind">Road safety</p>
+              <h3>Retro-reflectivity of metal road studs</h3>
+              <p>Field and experimental evaluation of metal raised pavement markers on Indian roads, with reflectivity studies in Nagpur, Pune, Nashik and Jaipur.</p>
+            </article>
+            <article class="project" data-category="safety">
+              <p class="kind">Road safety</p>
+              <h3>Vehicle marking conspicuity tape study</h3>
+              <p>A study in India of how well retro-reflective conspicuity tape on vehicles performs and how much it improves their visibility.</p>
+            </article>
+            <article class="project" data-category="safety">
+              <p class="kind">Road safety</p>
+              <h3>Crash analysis and blackspot rectification</h3>
+              <p>Crash data analysis to identify blackspots and propose engineering rectifications.</p>
+            </article>
+            <article class="project" data-category="junction">
+              <p class="kind">Junctions</p>
+              <h3>Geometric improvement of 45 junctions in Ahmedabad</h3>
+              <p>Redesign proposals for junctions across the city to improve safety and traffic flow.</p>
+            </article>
+            <article class="project" data-category="junction">
+              <p class="kind">Junctions</p>
+              <h3>Mora junction redesign, Hazira, NH-53</h3>
+              <p>Geometric redesign of the Mora junction on the Hazira stretch of National Highway 53.</p>
+            </article>
+            <article class="project" data-category="junction">
+              <p class="kind">Junctions</p>
+              <h3>Kharwarnagar BRTS interchange congestion</h3>
+              <p>Measures to stop bus shelters causing congestion at the Kharwarnagar BRTS interchange on the Surat–Navsari road.</p>
+            </article>
+            <article class="project" data-category="planning">
+              <p class="kind">Traffic planning</p>
+              <h3>Surat Railway Station area plan</h3>
+              <p>Planning and design of the station area, with organised auto-rickshaw parking, circulation, access and traffic management.</p>
+            </article>
+            <article class="project" data-category="planning">
+              <p class="kind">Traffic planning</p>
+              <h3>Navlakhi Port expansion traffic study</h3>
+              <p>Detailed traffic management and decongestion analysis for the proposed expansion of Navlakhi Port, Maliya, Morbi.</p>
+            </article>
+            <article class="project" data-category="site">
+              <p class="kind">Site work</p>
+              <h3>Site supervision, Khambhayata Shilp, Rajkot</h3>
+              <p>Supervised road construction and landscaping works and coordinated daily site activities with the contractor.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Contact ===================== -->
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <h2>Working on a road safety or design problem?</h2>
+        <p>I'm open to research collaborations, consultancy work and PhD opportunities in transportation engineering.</p>
+        <div class="contact-rows">
+          <a href="mailto:maitrik.bhadresa269@gmail.com"><small>Email</small><span>maitrik.bhadresa269@gmail.com</span></a>
+          <div><small>Based in</small><span>Surat, Gujarat, India</span></div>
+          <div><small>Current role</small><span>Senior Project Engineer, SVNIT</span></div>
+          <!-- To add LinkedIn, replace one of the rows above with:
+          <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener"><small>LinkedIn</small><span>linkedin.com/in/your-profile</span></a>
+          -->
+        </div>
+        <footer class="footer">
+          <span>© <span id="year"></span> Maitrik Bhadresa</span>
+          <a href="#top">Back to top</a>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var nav = document.getElementById("nav");
+      var burger = document.querySelector(".burger");
+      var menu = document.getElementById("menu");
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Solid navbar after leaving the hero
+      function onScroll() { nav.classList.toggle("solid", window.scrollY > 40); }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      // Mobile menu
+      burger.addEventListener("click", function () {
+        var open = menu.classList.toggle("open");
+        burger.setAttribute("aria-expanded", open);
+      });
+      menu.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", function () {
+          menu.classList.remove("open");
+          burger.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      // Highlight the section in view
+      var links = menu.querySelectorAll('a[href^="#"]:not(.menu-cta)');
+      var targets = Array.prototype.map.call(links, function (a) { return document.querySelector(a.getAttribute("href")); });
+      function setActive() {
+        var y = window.scrollY + 140, current = null;
+        targets.forEach(function (s) { if (s && s.offsetTop <= y) current = s.id; });
+        links.forEach(function (a) { a.classList.toggle("active", a.getAttribute("href") === "#" + current); });
+      }
+      window.addEventListener("scroll", setActive, { passive: true });
+      setActive();
+
+      // Project filters
+      var buttons = document.querySelectorAll(".filters button");
+      var projects = document.querySelectorAll(".project");
+      buttons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          buttons.forEach(function (b) { b.setAttribute("aria-pressed", b === btn); });
+          var f = btn.dataset.filter;
+          projects.forEach(function (p) { p.hidden = !(f === "all" || p.dataset.category === f); });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
